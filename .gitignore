@@ -1,0 +1,20 @@
+# Build outputs
+*.pdf
+*.pyc
+__pycache__/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Sample project build artifacts
+sample-project/out/
+sample-project/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

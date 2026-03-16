@@ -1,0 +1,41 @@
+{
+  "name": "my-first-extension",
+  "displayName": "My First Extension",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:myExtension.helloWorld"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "myExtension.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "myExtContainer",
+          "title": "Dependencies",
+          "icon": "$(package)"
+        }
+      ]
+    },
+    "views": {
+      "myExtContainer": [
+        {
+          "id": "myExt.dependencies",
+          "name": "Node Dependencies"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.110.0",
+    "typescript": "^5.9.3"
+  }
+}

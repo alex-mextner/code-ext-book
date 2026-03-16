@@ -1,0 +1,16 @@
+{
+  "name": "book-screenshots",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "screenshots": "npx tsx take-screenshots.ts",
+    "screenshots:debug": "DEBUG=1 npx tsx take-screenshots.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "playwright": "^1.50.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.7.0"
+  }
+}
