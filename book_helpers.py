@@ -664,56 +664,51 @@ class MonetizationDiagram(Flowable):
 
 # ─── Cover + page events ─────────────────────────────────────────────────────
 
+_IMAGES_DIR = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'images')
+
 class Cover(Flowable):
-    def wrap(self, aw, ah): return aw, ah
+    """Full-bleed cover page with background image, gradient overlay, and minimal text."""
+    def wrap(self, aw, ah): return W, H
     def draw(self):
         c = self.canv; c.saveState()
-        c.setFillColor(C['dark']); c.rect(0,0,W,H,fill=1,stroke=0)
-        c.setFillColor(C['blue']); c.rect(0,H-10*mm,W,10*mm,fill=1,stroke=0)
-        c.setFillColor(C['teal']); c.rect(0,0,8*mm,H,fill=1,stroke=0)
-        c.setFillColor(HexColor('#0D2137')); c.circle(W*.78,H*.55,105,fill=1,stroke=0)
-        c.setStrokeColor(C['blue']); c.setLineWidth(1.5); c.circle(W*.78,H*.55,105,fill=0,stroke=1)
-        c.setStrokeColor(HexColor('#1565C0')); c.setLineWidth(.7); c.circle(W*.78,H*.55,122,fill=0,stroke=1)
-        cx,cy = W*.78,H*.55
-        c.setStrokeColor(C['blue']); c.setLineWidth(3)
-        c.line(cx-27,cy+14,cx-11,cy); c.line(cx-27,cy-14,cx-11,cy)
-        c.setStrokeColor(C['lblue'])
-        c.line(cx+27,cy+14,cx+11,cy); c.line(cx+27,cy-14,cx+11,cy)
-        c.setStrokeColor(C['orange']); c.setLineWidth(2.5); c.line(cx+5,cy+20,cx-5,cy-20)
-        c.setFont('B',38); c.setFillColor(C['white'])
-        c.drawString(3*cm, H*.52, 'VS Code')
-        c.drawString(3*cm, H*.44, 'Extension')
-        c.setFont('R',38); c.drawString(3*cm, H*.36, 'API')
-        c.setStrokeColor(C['blue']); c.setLineWidth(2); c.line(3*cm,H*.33,14*cm,H*.33)
-        c.setFont('I',14); c.setFillColor(C['lblue'])
-        c.drawString(3*cm, H*.29, 'Архитектура, API, UX, тестирование и монетизация')
-        c.setFont('R',10.5); c.setFillColor(C['mgray'])
-        c.drawString(3*cm, H*.25, 'Alex — CTO HyperIDE  ·  t.me/mxtnr')
-        c.drawString(3*cm, H*.22, 'code.visualstudio.com/api  ·  github.com/microsoft/vscode')
-        c.setFillColor(C['blue']); c.roundRect(3*cm,H*.15,110,22,4,fill=1,stroke=0)
-        c.setFont('B',9.5); c.setFillColor(C['white'])
-        c.drawCentredString(3*cm+55, H*.158, 'Издание 2026  ·  230+ страниц')
-        chapters = [
-            'Введение — архитектура VS Code', 'Первое расширение Hello World',
-            'Анатомия расширения', 'Возможности расширений',
-            'Команды, меню и настройки', 'Темы оформления',
-            'Tree View API', 'Webview API',
-            'Языковые расширения + LSP', 'UX и предотвращение конфликтов',
-            'Тестирование + Playwright E2E', 'Бандлинг и публикация',
-            'AI-расширения: Copilot Chat', 'Монетизация расширений',
-            'Yeoman vs npm create', 'Bun compatibility',
-            'Лайфхаки разработчика', 'Справочник API',
-        ]
-        c.setFont('R', 7.5)
-        for i, ch in enumerate(chapters):
-            col = 0 if i < 9 else 1
-            row = i if i < 9 else i - 9
-            x = 3*cm + col*8.2*cm
-            y = H*.9 - row*.87*cm
-            c.setFillColor(C['blue']); c.circle(x-4*mm, y+2, 2.5, fill=1, stroke=0)
-            c.setFillColor(HexColor('#B0BEC5')); c.drawString(x, y, ch)
-        c.setFont('R',7.5); c.setFillColor(HexColor('#37474F'))
-        c.drawCentredString(W/2, 1.4*cm, 'Alex (t.me/mxtnr)  •  CC BY-SA 4.0  •  github.com/alex-mextner/code-ext-book')
+        cover_img = _os.path.join(_IMAGES_DIR, 'cover.jpg')
+        if _os.path.exists(cover_img):
+            # Crop-to-fill: scale image so it covers the entire page
+            from reportlab.lib.utils import ImageReader
+            img = ImageReader(cover_img)
+            iw, ih = img.getSize()
+            # Scale to fill — use the larger scale factor
+            scale = max(W / iw, H / ih)
+            draw_w, draw_h = iw * scale, ih * scale
+            # Center the image (crop overflow)
+            x_off = (W - draw_w) / 2
+            y_off = (H - draw_h) / 2
+            p = c.beginPath()
+            p.rect(0, 0, W, H)
+            c.clipPath(p, stroke=0)
+            c.drawImage(cover_img, x_off, y_off, width=draw_w, height=draw_h)
+        else:
+            c.setFillColor(C['dark']); c.rect(0, 0, W, H, fill=1, stroke=0)
+        # Dark gradient overlay at bottom for text readability
+        for i in range(60):
+            alpha = (i / 60.0) ** 1.5 * 0.92
+            c.setFillColorRGB(0.03, 0.03, 0.06, alpha)
+            y = H * 0.45 * (1 - i / 60.0)
+            c.rect(0, 0, W, y + H * 0.08, fill=1, stroke=0)
+        # Title
+        c.setFont('B', 44); c.setFillColor(C['white'])
+        c.drawString(2.2*cm, H * 0.22, 'VS Code Extension API')
+        # Subtle line
+        c.setStrokeColorRGB(0.4, 0.6, 0.9, 0.5); c.setLineWidth(1.2)
+        c.line(2.2*cm, H * 0.195, 15.5*cm, H * 0.195)
+        # Author
+        c.setFont('R', 14); c.setFillColorRGB(0.8, 0.83, 0.88)
+        c.drawString(2.2*cm, H * 0.155, 'Alex')
+        c.setFont('R', 10); c.setFillColorRGB(0.55, 0.6, 0.65)
+        c.drawString(2.2*cm + c.stringWidth('Alex  ', 'R', 14), H * 0.157, 'CTO HyperIDE')
+        # Year
+        c.setFont('R', 11); c.setFillColorRGB(0.4, 0.45, 0.5)
+        c.drawString(2.2*cm, H * 0.12, '2026')
         c.restoreState()
 
 

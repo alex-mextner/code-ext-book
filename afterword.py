@@ -51,13 +51,18 @@ def build_afterword():
         add(bul(item))
     add(sp(8))
 
+    add(box('Репозиторий книги',
+        'Исходный код этой книги открыт: <b>github.com/alex-mextner/code-ext-book</b>. '
+        'Нашли ошибку, устаревшую информацию или хотите предложить улучшение? '
+        'Создайте Issue или Pull Request — мы ценим каждый вклад.', 'tip'))
+    add(sp(8))
+
     add(hl(C['blue'], 1.5))
     add(sp(4))
     add(p(
-        '<i>Данная книга является переводом и адаптацией официальной документации '
-        'Visual Studio Code Extension API (Microsoft, MIT License). '
-        'Все примеры кода взяты из официальных репозиториев Microsoft и адаптированы. '
-        'Версия март 2026.</i>',
+        '<i>Автор: Alex (t.me/mxtnr) — CTO HyperIDE. '
+        'На основе официальной документации Visual Studio Code Extension API (Microsoft). '
+        'Лицензия: CC BY-SA 4.0. Версия март 2026.</i>',
         'bodyi'
     ))
     return A

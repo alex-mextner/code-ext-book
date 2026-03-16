@@ -27,13 +27,24 @@ OUT = _default_out if os.path.isdir(os.path.dirname(_default_out)) else os.path.
 class BookDocTemplate(BaseDocTemplate):
     def __init__(self, filename, **kwargs):
         super().__init__(filename, **kwargs)
-        frame = Frame(self.leftMargin, self.bottomMargin,
-                      self.width, self.height, id='main')
+        # Cover page: full-bleed, no margins, no headers/footers, page 0
+        cover_frame = Frame(0, 0, A4[0], A4[1], id='cover',
+                            leftPadding=0, rightPadding=0,
+                            topPadding=0, bottomPadding=0)
+        # Content pages: normal margins with headers/footers
+        content_frame = Frame(self.leftMargin, self.bottomMargin,
+                              self.width, self.height, id='main')
         self.addPageTemplates([
-            PageTemplate(id='main', frames=[frame], onPage=self._on_page)
+            PageTemplate(id='cover', frames=[cover_frame],
+                         onPage=self._on_cover_page),
+            PageTemplate(id='main', frames=[content_frame],
+                         onPage=self._on_content_page),
         ])
 
-    def _on_page(self, canvas, doc):
+    def _on_cover_page(self, canvas, doc):
+        pass  # no headers, no footers, no page number
+
+    def _on_content_page(self, canvas, doc):
         on_later_pages(canvas, doc)
 
     def afterFlowable(self, flowable):

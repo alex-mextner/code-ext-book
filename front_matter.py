@@ -4,14 +4,15 @@ front_matter.py — обложка, оборот, посвящение, огла
 from book_helpers import *
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
+from reportlab.platypus import NextPageTemplate
 
 def build_front_matter():
     A = []
     def add(*x):
         for i in x: A.append(i)
 
-    # ── 1. ОБЛОЖКА ──────────────────────────────────────────────────────────
-    add(Cover(), pb())
+    # ── 1. ОБЛОЖКА (full-bleed, no margins) ──────────────────────────────────
+    add(Cover(), NextPageTemplate('main'), pb())
 
     # ── 2. ОБОРОТ ТИТУЛА (verso) ────────────────────────────────────────────
     # Традиционно левая страница после обложки — выходные данные
@@ -206,8 +207,8 @@ def build_front_matter_no_toc(toc_flowable):
     def add(*x):
         for i in x: A.append(i)
 
-    # ── 1. ОБЛОЖКА ──────────────────────────────────────────────────────────
-    add(Cover(), pb())
+    # ── 1. ОБЛОЖКА (full-bleed, no margins) ──────────────────────────────────
+    add(Cover(), NextPageTemplate('main'), pb())
 
     # ── 2. ОБОРОТ ТИТУЛА ────────────────────────────────────────────────────
     verso_style = ParagraphStyle(

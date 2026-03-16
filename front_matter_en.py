@@ -7,57 +7,11 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 
 
 class CoverEn(Flowable):
-    """English cover page."""
-    def wrap(self, aw, ah): return aw, ah
+    """English cover — reuses the same Cover class from book_helpers."""
+    def wrap(self, aw, ah): return W, H
     def draw(self):
-        c = self.canv; c.saveState()
-        c.setFillColor(C['dark']); c.rect(0,0,W,H,fill=1,stroke=0)
-        c.setFillColor(C['blue']); c.rect(0,H-10*mm,W,10*mm,fill=1,stroke=0)
-        c.setFillColor(C['teal']); c.rect(0,0,8*mm,H,fill=1,stroke=0)
-        c.setFillColor(HexColor('#0D2137')); c.circle(W*.78,H*.55,105,fill=1,stroke=0)
-        c.setStrokeColor(C['blue']); c.setLineWidth(1.5); c.circle(W*.78,H*.55,105,fill=0,stroke=1)
-        c.setStrokeColor(HexColor('#1565C0')); c.setLineWidth(.7); c.circle(W*.78,H*.55,122,fill=0,stroke=1)
-        cx,cy = W*.78,H*.55
-        c.setStrokeColor(C['blue']); c.setLineWidth(3)
-        c.line(cx-27,cy+14,cx-11,cy); c.line(cx-27,cy-14,cx-11,cy)
-        c.setStrokeColor(C['lblue'])
-        c.line(cx+27,cy+14,cx+11,cy); c.line(cx+27,cy-14,cx+11,cy)
-        c.setStrokeColor(C['orange']); c.setLineWidth(2.5); c.line(cx+5,cy+20,cx-5,cy-20)
-        c.setFont('B',38); c.setFillColor(C['white'])
-        c.drawString(3*cm, H*.52, 'VS Code')
-        c.drawString(3*cm, H*.44, 'Extension')
-        c.setFont('R',38); c.drawString(3*cm, H*.36, 'API')
-        c.setStrokeColor(C['blue']); c.setLineWidth(2); c.line(3*cm,H*.33,14*cm,H*.33)
-        c.setFont('I',14); c.setFillColor(C['lblue'])
-        c.drawString(3*cm, H*.29, 'Architecture, API, UX, Testing, and Monetization')
-        c.setFont('R',10.5); c.setFillColor(C['mgray'])
-        c.drawString(3*cm, H*.25, 'Alex — CTO HyperIDE  ·  t.me/mxtnr')
-        c.drawString(3*cm, H*.22, 'code.visualstudio.com/api  ·  github.com/microsoft/vscode')
-        c.setFillColor(C['blue']); c.roundRect(3*cm,H*.15,110,22,4,fill=1,stroke=0)
-        c.setFont('B',9.5); c.setFillColor(C['white'])
-        c.drawCentredString(3*cm+55, H*.158, '2026 Edition  ·  230+ pages')
-        chapters = [
-            'Introduction — VS Code Architecture', 'First Extension: Hello World',
-            'Extension Anatomy', 'Extension Capabilities',
-            'Commands, Menus, and Settings', 'Color Themes',
-            'Tree View API', 'Webview API',
-            'Language Extensions + LSP', 'UX and Conflict Prevention',
-            'Testing + Playwright E2E', 'Bundling and Publishing',
-            'AI Extensions: Copilot Chat', 'Extension Monetization',
-            'Yeoman vs npm create', 'Bun Compatibility',
-            'Developer Tips & Tricks', 'API Reference',
-        ]
-        c.setFont('R', 7.5)
-        for i, ch in enumerate(chapters):
-            col = 0 if i < 9 else 1
-            row = i if i < 9 else i - 9
-            x = 3*cm + col*8.2*cm
-            y = H*.9 - row*.87*cm
-            c.setFillColor(C['blue']); c.circle(x-4*mm, y+2, 2.5, fill=1, stroke=0)
-            c.setFillColor(HexColor('#B0BEC5')); c.drawString(x, y, ch)
-        c.setFont('R',7.5); c.setFillColor(HexColor('#37474F'))
-        c.drawCentredString(W/2, 1.4*cm, 'Alex (t.me/mxtnr)  •  CC BY-SA 4.0  •  github.com/alex-mextner/code-ext-book')
-        c.restoreState()
+        # Same cover for both languages — title is in English anyway
+        Cover().drawOn(self.canv, 0, 0)
 
 
 def build_front_matter_no_toc(toc_flowable):
@@ -70,7 +24,8 @@ def build_front_matter_no_toc(toc_flowable):
         for i in x: A.append(i)
 
     # ── 1. COVER ─────────────────────────────────────────────────────────────
-    add(CoverEn(), pb())
+    from reportlab.platypus import NextPageTemplate
+    add(CoverEn(), NextPageTemplate('main'), pb())
 
     # ── 2. VERSO (title page back) ───────────────────────────────────────────
     verso_style = ParagraphStyle(
