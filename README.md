@@ -108,4 +108,4 @@ The book content is in Russian by default. English translation files have the `_
 
 ## License
 
-Content and code are provided as-is for educational purposes.
+This work is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — free to share and adapt, even commercially, as long as you give credit and distribute derivatives under the same license.
