@@ -688,11 +688,11 @@ class Cover(Flowable):
         c.setFont('I',14); c.setFillColor(C['lblue'])
         c.drawString(3*cm, H*.29, 'Архитектура, API, UX, тестирование и монетизация')
         c.setFont('R',10.5); c.setFillColor(C['mgray'])
-        c.drawString(3*cm, H*.25, 'На основе официальной документации Microsoft и опыта сообщества')
+        c.drawString(3*cm, H*.25, 'Alex — CTO HyperIDE  ·  t.me/mxtnr')
         c.drawString(3*cm, H*.22, 'code.visualstudio.com/api  ·  github.com/microsoft/vscode')
         c.setFillColor(C['blue']); c.roundRect(3*cm,H*.15,110,22,4,fill=1,stroke=0)
         c.setFont('B',9.5); c.setFillColor(C['white'])
-        c.drawCentredString(3*cm+55, H*.158, 'Издание 2026  ·  160+ страниц')
+        c.drawCentredString(3*cm+55, H*.158, 'Издание 2026  ·  230+ страниц')
         chapters = [
             'Введение — архитектура VS Code', 'Первое расширение Hello World',
             'Анатомия расширения', 'Возможности расширений',
@@ -713,7 +713,7 @@ class Cover(Flowable):
             c.setFillColor(C['blue']); c.circle(x-4*mm, y+2, 2.5, fill=1, stroke=0)
             c.setFillColor(HexColor('#B0BEC5')); c.drawString(x, y, ch)
         c.setFont('R',7.5); c.setFillColor(HexColor('#37474F'))
-        c.drawCentredString(W/2, 1.4*cm, 'Visual Studio Code  •  Microsoft  •  Open Source MIT')
+        c.drawCentredString(W/2, 1.4*cm, 'Alex (t.me/mxtnr)  •  CC BY-SA 4.0  •  github.com/alex-mextner/code-ext-book')
         c.restoreState()
 
 
