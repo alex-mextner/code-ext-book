@@ -1,5 +1,7 @@
 # VS Code Extension API — The Complete Developer Guide
 
+By **[Alex](https://t.me/mxtnr)** — CTO at [HyperIDE](https://hyperide.ai), 15 years in software development.
+
 A comprehensive book about building Visual Studio Code extensions. Covers the full journey from Hello World to publishing AI-powered extensions with Language Model API and MCP.
 
 **~230 pages** | **19 chapters** | **50+ tips** | **4 reference appendices** | **51-term glossary**
@@ -97,6 +99,12 @@ Code blocks have automatic TypeScript/JavaScript syntax highlighting. File tree 
 ## Contributing
 
 The book content is in Russian by default. English translation files have the `_en` suffix. To translate a chapter, copy the Russian file (e.g., `book_part2.py` → `book_part2_en.py`), translate all text in `p()`, `h2()`, `h3()`, `box()`, `banner()`, `bul()`, and table cells. Keep code blocks and API names as-is.
+
+## Author
+
+**Alex** — CTO at [HyperIDE](https://hyperide.ai), 15 years in software development.
+- Telegram: [@mxtnr](https://t.me/mxtnr)
+- GitHub: [alex-mextner](https://github.com/alex-mextner)
 
 ## License
 

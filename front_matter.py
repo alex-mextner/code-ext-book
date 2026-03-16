@@ -76,10 +76,13 @@ def build_front_matter():
     add(sp(12))
 
     # Нижняя часть — выходные данные
+    add(Paragraph('Автор: Alex — CTO HyperIDE, 15 лет в разработке', verso_bold))
+    add(Paragraph('t.me/mxtnr  •  github.com/alex-mextner/code-ext-book', verso_style))
+    add(sp(8))
     add(Paragraph('Издание 2026 года', verso_bold))
     add(sp(4))
     add(Paragraph(
-        'Перевод и адаптация: на основе официальной документации Microsoft',
+        'На основе официальной документации Microsoft VS Code Extension API.',
         verso_small
     ))
     add(Paragraph(
@@ -90,12 +93,6 @@ def build_front_matter():
     add(Paragraph(
         'Примеры кода: MIT License, '
         'github.com/microsoft/vscode-extension-samples',
-        verso_small
-    ))
-    add(sp(8))
-    add(Paragraph(
-        'Диаграммы, перевод, дополнительные главы и адаптация: '
-        'составлены на основе открытых источников и опыта сообщества разработчиков.',
         verso_small
     ))
     add(sp(16))

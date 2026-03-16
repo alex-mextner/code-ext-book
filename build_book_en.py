@@ -96,7 +96,7 @@ doc = BookDocTemplate(
     topMargin=2.0*cm + 0.5*cm,
     bottomMargin=1.8*cm + 0.3*cm,
     title='VS Code Extension API — The Complete Developer Guide',
-    author='Based on Microsoft documentation and community experience',
+    author='Alex (t.me/mxtnr) — CTO HyperIDE',
     subject='Visual Studio Code Extensions',
     creator='Claude / Anthropic',
 )
