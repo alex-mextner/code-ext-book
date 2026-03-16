@@ -31,11 +31,11 @@ class CoverEn(Flowable):
         c.setFont('I',14); c.setFillColor(C['lblue'])
         c.drawString(3*cm, H*.29, 'Architecture, API, UX, Testing, and Monetization')
         c.setFont('R',10.5); c.setFillColor(C['mgray'])
-        c.drawString(3*cm, H*.25, 'Based on official Microsoft documentation and community experience')
+        c.drawString(3*cm, H*.25, 'Alex — CTO HyperIDE  ·  t.me/mxtnr')
         c.drawString(3*cm, H*.22, 'code.visualstudio.com/api  ·  github.com/microsoft/vscode')
         c.setFillColor(C['blue']); c.roundRect(3*cm,H*.15,110,22,4,fill=1,stroke=0)
         c.setFont('B',9.5); c.setFillColor(C['white'])
-        c.drawCentredString(3*cm+55, H*.158, '2026 Edition  ·  160+ pages')
+        c.drawCentredString(3*cm+55, H*.158, '2026 Edition  ·  230+ pages')
         chapters = [
             'Introduction — VS Code Architecture', 'First Extension: Hello World',
             'Extension Anatomy', 'Extension Capabilities',
@@ -56,7 +56,7 @@ class CoverEn(Flowable):
             c.setFillColor(C['blue']); c.circle(x-4*mm, y+2, 2.5, fill=1, stroke=0)
             c.setFillColor(HexColor('#B0BEC5')); c.drawString(x, y, ch)
         c.setFont('R',7.5); c.setFillColor(HexColor('#37474F'))
-        c.drawCentredString(W/2, 1.4*cm, 'Visual Studio Code  •  Microsoft  •  Open Source MIT')
+        c.drawCentredString(W/2, 1.4*cm, 'Alex (t.me/mxtnr)  •  CC BY-SA 4.0  •  github.com/alex-mextner/code-ext-book')
         c.restoreState()
 
 
@@ -124,21 +124,21 @@ def build_front_matter_no_toc(toc_flowable):
     add(sp(20))
     add(hl(HexColor('#CCCCCC')))
     add(sp(12))
+    add(Paragraph('Author: Alex — CTO HyperIDE, 15 years in software development', verso_bold))
+    add(Paragraph('t.me/mxtnr  &bull;  github.com/alex-mextner/code-ext-book', verso_style))
+    add(sp(8))
     add(Paragraph('2026 Edition', verso_bold))
     add(sp(4))
-    add(Paragraph('Based on official Microsoft documentation', verso_small))
+    add(Paragraph(
+        'Based on official Microsoft VS Code Extension API documentation.',
+        verso_small
+    ))
     add(Paragraph(
         'Original documentation: &copy; Microsoft Corporation, '
         'published under Creative Commons Attribution license.',
         verso_small
     ))
     add(Paragraph('Code examples: MIT License, github.com/microsoft/vscode-extension-samples', verso_small))
-    add(sp(8))
-    add(Paragraph(
-        'Diagrams, additional chapters, and adaptation: '
-        'compiled from open sources and developer community experience.',
-        verso_small
-    ))
     add(sp(16))
     disclaimer_style = ParagraphStyle(
         'disc2en', fontName='I', fontSize=7.5,
