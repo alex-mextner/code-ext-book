@@ -42,7 +42,7 @@ jobs:
 
             **Downloads:**
             - `vscode-extensions-complete-guide-ru.pdf` — Russian (complete)
-            - `vscode-extensions-complete-guide-en.pdf` — English (chapters 1-9)
+            - `vscode-extensions-complete-guide-en.pdf` — English
           artifacts: "vscode-extensions-complete-guide-*.pdf"
           allowUpdates: true
           makeLatest: true
