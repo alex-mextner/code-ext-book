@@ -51,7 +51,7 @@ Isolated VS Code instances, ESM modules, Extension Bisect, Output Channel loggin
 
 ## Screenshots
 
-Real VS Code screenshots captured automatically via Playwright — not mockups.
+Real VS Code screenshots captured automatically via Playwright.
 
 ```bash
 # Regenerate screenshots (requires VS Code installed)

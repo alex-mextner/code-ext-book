@@ -1,0 +1,49 @@
+name: Build PDF & Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system fonts
+        run: sudo apt-get install -y fonts-dejavu-core
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Build Russian PDF
+        run: uv run --with reportlab python3 build_book.py
+
+      - name: Build English PDF
+        run: uv run --with reportlab python3 build_book_en.py
+
+      - name: Get short SHA and date
+        id: meta
+        run: |
+          echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          echo "date=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: latest
+          name: "Latest build (${{ steps.meta.outputs.date }})"
+          body: |
+            Auto-built from commit `${{ steps.meta.outputs.sha }}` on ${{ steps.meta.outputs.date }}.
+
+            **Downloads:**
+            - `vscode-extensions-complete-guide-ru.pdf` — Russian (complete)
+            - `vscode-extensions-complete-guide-en.pdf` — English (chapters 1-9)
+          artifacts: "vscode-extensions-complete-guide-*.pdf"
+          allowUpdates: true
+          makeLatest: true
+          removeArtifacts: true
