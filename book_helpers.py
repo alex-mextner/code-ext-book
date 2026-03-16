@@ -689,26 +689,52 @@ class Cover(Flowable):
             c.drawImage(cover_img, x_off, y_off, width=draw_w, height=draw_h)
         else:
             c.setFillColor(C['dark']); c.rect(0, 0, W, H, fill=1, stroke=0)
+        # Semi-transparent overlay at top for topic pills
+        for i in range(30):
+            alpha = (1 - i / 30.0) ** 2 * 0.55
+            c.setFillColorRGB(0.02, 0.02, 0.05, alpha)
+            c.rect(0, H - (i + 1) * (H * 0.18 / 30), W, H * 0.18 / 30, fill=1, stroke=0)
+        # Topic pills at top
+        topics = [
+            'Architecture', 'Commands & Menus', 'Tree View', 'Webview',
+            'LSP', 'Testing', 'AI & MCP', 'UX', 'Publishing', 'Performance',
+        ]
+        tx = 2.2 * cm
+        ty = H - 1.8 * cm
+        c.setFont('R', 7.5)
+        for topic in topics:
+            tw = c.stringWidth(topic, 'R', 7.5) + 12
+            c.setFillColorRGB(1, 1, 1, 0.08)
+            c.roundRect(tx, ty, tw, 14, 7, fill=1, stroke=0)
+            c.setFillColorRGB(0.7, 0.75, 0.8, 0.7)
+            c.drawString(tx + 6, ty + 3.5, topic)
+            tx += tw + 6
+            if tx > W - 3 * cm:
+                tx = 2.2 * cm
+                ty -= 20
         # Dark gradient overlay at bottom for text readability
         for i in range(60):
             alpha = (i / 60.0) ** 1.5 * 0.92
             c.setFillColorRGB(0.03, 0.03, 0.06, alpha)
             y = H * 0.45 * (1 - i / 60.0)
             c.rect(0, 0, W, y + H * 0.08, fill=1, stroke=0)
-        # Title
-        c.setFont('B', 44); c.setFillColor(C['white'])
+        # Title — one line, sized to fit
+        c.setFont('B', 32); c.setFillColor(C['white'])
         c.drawString(2.2*cm, H * 0.22, 'VS Code Extension API')
+        # Subtitle
+        c.setFont('I', 13); c.setFillColorRGB(0.65, 0.72, 0.82)
+        c.drawString(2.2*cm, H * 0.185, 'The Complete Developer Guide')
         # Subtle line
-        c.setStrokeColorRGB(0.4, 0.6, 0.9, 0.5); c.setLineWidth(1.2)
-        c.line(2.2*cm, H * 0.195, 15.5*cm, H * 0.195)
+        c.setStrokeColorRGB(0.4, 0.6, 0.9, 0.4); c.setLineWidth(1)
+        c.line(2.2*cm, H * 0.175, 13*cm, H * 0.175)
         # Author
-        c.setFont('R', 14); c.setFillColorRGB(0.8, 0.83, 0.88)
-        c.drawString(2.2*cm, H * 0.155, 'Alex')
-        c.setFont('R', 10); c.setFillColorRGB(0.55, 0.6, 0.65)
-        c.drawString(2.2*cm + c.stringWidth('Alex  ', 'R', 14), H * 0.157, 'CTO HyperIDE')
+        c.setFont('R', 12); c.setFillColorRGB(0.75, 0.78, 0.83)
+        c.drawString(2.2*cm, H * 0.145, 'Alex')
+        c.setFont('R', 9); c.setFillColorRGB(0.5, 0.53, 0.58)
+        c.drawString(2.2*cm + c.stringWidth('Alex  ', 'R', 12), H * 0.147, 'CTO HyperIDE')
         # Year
-        c.setFont('R', 11); c.setFillColorRGB(0.4, 0.45, 0.5)
-        c.drawString(2.2*cm, H * 0.12, '2026')
+        c.setFont('R', 10); c.setFillColorRGB(0.38, 0.4, 0.45)
+        c.drawString(2.2*cm, H * 0.115, '2026')
         c.restoreState()
 
 

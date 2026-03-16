@@ -961,10 +961,31 @@ def build_story():
         'between views.', 'tip'))
     add(sp(8))
     add(h3('What Tree View Looks Like in the Editor'))
-    add(p('Below is how a Tree View extension looks in the VS Code sidebar — '
-          'with hierarchy, icons, descriptions, and a refresh button in the header:'))
     add(sp(4))
-    add(screenshot('05-explorer-sidebar.png', 'Tree View: hierarchical data in the VS Code sidebar'))
+    # Tree View screenshot with text wrapping (image left, text right)
+    import os as _os_local
+    from reportlab.platypus import Image as RLImage
+    _img_path = _os_local.path.join(_os_local.path.dirname(_os_local.path.abspath(__file__)), 'screenshots', '05-explorer-sidebar.png')
+    _tv_img = RLImage(_img_path)
+    _iw, _ih = _tv_img.imageWidth, _tv_img.imageHeight
+    _scale = min(CW * 0.35 / _iw, 280 / _ih)
+    _tv_img = RLImage(_img_path, width=_iw * _scale, height=_ih * _scale)
+    _tv_text = Paragraph(
+        'Tree View is a hierarchical data representation in the VS Code sidebar. '
+        'Shown here is the Explorer with extension project files: src/ with TypeScript files, '
+        'package.json, tsconfig.json. Similar Tree Views are created via <b>TreeDataProvider</b> '
+        'for custom data — dependencies, tasks, bookmarks.',
+        S['body']
+    )
+    _tv_table = Table([[_tv_img, _tv_text]], colWidths=[CW * 0.38, CW * 0.62])
+    _tv_table.setStyle(TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('LEFTPADDING', (0, 0), (0, 0), 0),
+        ('RIGHTPADDING', (1, 0), (1, 0), 0),
+        ('LEFTPADDING', (1, 0), (1, 0), 12),
+    ]))
+    add(_tv_table)
+    add(Paragraph('Tree View: hierarchical data in the VS Code sidebar', S['caption']))
     add(pb())
 
     # ── CHAPTER 6.5: Decoration API ──────────────────────────────────────────

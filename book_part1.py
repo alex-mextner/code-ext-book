@@ -17,9 +17,7 @@ def build_story():
     add(toc_ch('Предисловие'), h1('Предисловие'), hl(C['blue']), sp(8))
     add(screenshot('sharpen-the-saw.png', ''))
     add(sp(6))
-    add(p('<i>«Затачивайте пилу. Если дать мне шесть часов на то, чтобы срубить дерево, первые четыре я потрачу на заточку топора.»</i>'))
-    add(sp(2))
-    add(p('— Стивен Кови, «7 навыков высокоэффективных людей», навык 7'))
+    add(quote('Затачивайте пилу. Если дать мне шесть часов на то, чтобы срубить дерево, первые четыре я потрачу на заточку топора.', 'Стивен Кови', '«7 навыков высокоэффективных людей», навык 7'))
     add(sp(6))
     add(p('VS Code — это ваш главный инструмент. Расширения — способ заточить его под себя. Эта книга учит создавать расширения, которые превращают редактор кода в инструмент, идеально подходящий для вашей задачи.'))
     add(sp(6))
@@ -432,6 +430,7 @@ def build_story():
     add(p('Три встроенных способа взаимодействия с пользователем. <b>Уведомления</b> (showInformation/Warning/ErrorMessage) — появляются в правом нижнем углу; с кнопками возвращают выбранный вариант или undefined при Escape. <b>InputBox</b> — однострочный ввод; validateInput вызывается при каждом нажатии клавиши и показывает ошибку до подтверждения. <b>Quick Pick</b> — список с поиском, Separator разделяет группы; используйте matchOnDescription для поиска по description-полю. Все три API асинхронны и возвращают undefined при отмене — всегда проверяйте результат.'))
     add(sp(4))
     add(screenshot('07-quick-pick.png', 'Quick Pick: палитра выбора действий (showQuickPick)'))
+    add(p('Вызывается через <b>Ctrl+Shift+P</b> (Command Palette) или программно через <b>vscode.window.showQuickPick()</b>.'))
     add(sp(6))
     add(code([
         '// Progress API — три вида отображения прогресса:',
@@ -682,7 +681,7 @@ def build_story():
     add(sp(6))
 
     add(h2('Создание Color Theme'))
-    add(p('Пользователь выбирает тему через <b>Preferences: Color Theme</b> — Quick Pick с предпросмотром:'))
+    add(p('Пользователь выбирает тему через <b>Preferences: Color Theme</b> (<b>Ctrl+K Ctrl+T</b>) — Quick Pick с предпросмотром:'))
     add(sp(4))
     add(screenshot('12-color-theme-picker.png', 'Color Theme Picker: переключение тем с живым предпросмотром'))
     add(sp(4))
@@ -969,10 +968,31 @@ def build_story():
         'между представлениями.', 'tip'))
     add(sp(8))
     add(h3('Как выглядит Tree View в редакторе'))
-    add(p('Ниже показано как выглядит Tree View расширения в боковой панели VS Code — '
-          'с иерархией, иконками, описаниями и кнопкой обновления в заголовке:'))
     add(sp(4))
-    add(screenshot('05-explorer-sidebar.png', 'Tree View: иерархические данные в боковой панели VS Code'))
+    # Tree View screenshot with text wrapping (image left, text right)
+    import os as _os_local
+    from reportlab.platypus import Image as RLImage
+    _img_path = _os_local.path.join(_os_local.path.dirname(_os_local.path.abspath(__file__)), 'screenshots', '05-explorer-sidebar.png')
+    _tv_img = RLImage(_img_path)
+    _iw, _ih = _tv_img.imageWidth, _tv_img.imageHeight
+    _scale = min(CW * 0.35 / _iw, 280 / _ih)
+    _tv_img = RLImage(_img_path, width=_iw * _scale, height=_ih * _scale)
+    _tv_text = Paragraph(
+        'Tree View — иерархическое представление данных в боковой панели VS Code. '
+        'Здесь показан Explorer с файлами проекта расширения: src/ с TypeScript-файлами, '
+        'package.json, tsconfig.json. Аналогичные Tree View создаются через <b>TreeDataProvider</b> '
+        'для кастомных данных — зависимости, задачи, закладки.',
+        S['body']
+    )
+    _tv_table = Table([[_tv_img, _tv_text]], colWidths=[CW * 0.38, CW * 0.62])
+    _tv_table.setStyle(TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('LEFTPADDING', (0, 0), (0, 0), 0),
+        ('RIGHTPADDING', (1, 0), (1, 0), 0),
+        ('LEFTPADDING', (1, 0), (1, 0), 12),
+    ]))
+    add(_tv_table)
+    add(Paragraph('Tree View: иерархические данные в боковой панели VS Code', S['caption']))
     add(pb())
 
     # ── ГЛАВА 6.5: Decoration API ─────────────────────────────────────────────
