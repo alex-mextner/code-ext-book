@@ -70,6 +70,7 @@ def build_story():
 - Glossary terms link to chapters via `<a href="#chapter_N">`
 - Tables with official VS Code data must include a URL to the source documentation
 - **CRITICAL: RU and EN must always be in sync.** Every change to `book_*.py` must be mirrored in `book_*_en.py` (and vice versa). This includes: new sections, screenshots, quotes, boxes, cross-references, afterword. If you add content to RU, immediately add the translated version to EN.
+- **EN version is NOT a translation.** Never say "translation", "translated from", "перевод документации" in EN files. The EN edition is an original English book. Use "based on" or "reference" instead. The VS Code docs are already in English — calling the EN book a "translation" makes no sense.
 - EN files use `tree_func('en')` for FileTreeSVG diagrams
 - `screenshot(filename, caption)` preserves aspect ratio, scales to fit `CW`
 - `box(title, body, kind)` — kind: 'note' (blue), 'tip' (green), 'warn' (orange)
