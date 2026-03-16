@@ -6,14 +6,14 @@ import book_helpers
 from book_helpers import *
 from front_matter_en import build_front_matter_no_toc
 from book_part1_en import build_story
-from book_part2 import build_story_part2
-from book_part3 import build_story_part3
-from book_part4 import build_story_part4
-from book_ux import build_story_ux
-from book_new import build_story_new
-from book_perf import build_perf_chapter
-from book_appendices import build_appendices
-from afterword import build_afterword
+from book_part2_en import build_story_part2
+from book_part3_en import build_story_part3
+from book_part4_en import build_story_part4
+from book_ux_en import build_story_ux
+from book_new_en import build_story_new
+from book_perf_en import build_perf_chapter
+from book_appendices_en import build_appendices
+from afterword_en import build_afterword
 
 from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate
 from reportlab.platypus.tableofcontents import TableOfContents

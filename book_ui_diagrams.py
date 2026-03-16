@@ -534,31 +534,46 @@ class FileTreeSVG(Flowable):
         c.restoreState()
 
 
-def helloworld_tree():
+def helloworld_tree(lang='ru'):
     """File tree for Hello World extension project."""
-    items = [
-        # (depth, is_dir, name, comment)
-        (0, True,  'helloworld/', ''),
-        (1, True,  '.vscode/', ''),
-        (2, False, 'launch.json', '← запуск Extension Host'),
-        (2, False, 'tasks.json',  '← компиляция TypeScript'),
-        (1, True,  'src/', ''),
-        (2, False, 'extension.ts', '← точка входа'),
-        (2, True,  'test/', ''),
-        (3, False, 'extension.test.ts', ''),
-        (1, False, '.vscodeignore', '← исключения из .vsix'),
-        (1, False, 'esbuild.js',    '← скрипт сборки'),
-        (1, False, 'package.json',  '← манифест расширения'),
-        (1, False, 'tsconfig.json', ''),
-        (1, False, 'README.md', ''),
-    ]
-    return FileTreeSVG(
-        w=CW * 0.72, h=240, items=items,
-        title='Структура проекта расширения VS Code'
-    )
+    if lang == 'en':
+        items = [
+            (0, True,  'helloworld/', ''),
+            (1, True,  '.vscode/', ''),
+            (2, False, 'launch.json', '← launch Extension Host'),
+            (2, False, 'tasks.json',  '← TypeScript compilation'),
+            (1, True,  'src/', ''),
+            (2, False, 'extension.ts', '← entry point'),
+            (2, True,  'test/', ''),
+            (3, False, 'extension.test.ts', ''),
+            (1, False, '.vscodeignore', '← .vsix exclusions'),
+            (1, False, 'esbuild.js',    '← build script'),
+            (1, False, 'package.json',  '← extension manifest'),
+            (1, False, 'tsconfig.json', ''),
+            (1, False, 'README.md', ''),
+        ]
+        title = 'VS Code extension project structure'
+    else:
+        items = [
+            (0, True,  'helloworld/', ''),
+            (1, True,  '.vscode/', ''),
+            (2, False, 'launch.json', '← запуск Extension Host'),
+            (2, False, 'tasks.json',  '← компиляция TypeScript'),
+            (1, True,  'src/', ''),
+            (2, False, 'extension.ts', '← точка входа'),
+            (2, True,  'test/', ''),
+            (3, False, 'extension.test.ts', ''),
+            (1, False, '.vscodeignore', '← исключения из .vsix'),
+            (1, False, 'esbuild.js',    '← скрипт сборки'),
+            (1, False, 'package.json',  '← манифест расширения'),
+            (1, False, 'tsconfig.json', ''),
+            (1, False, 'README.md', ''),
+        ]
+        title = 'Структура проекта расширения VS Code'
+    return FileTreeSVG(w=CW * 0.72, h=240, items=items, title=title)
 
 
-def lsp_tree():
+def lsp_tree(lang='ru'):
     """File tree for LSP extension project."""
     items = [
         (0, True,  'my-language-extension/', ''),
@@ -570,25 +585,30 @@ def lsp_tree():
         (3, False, 'server.ts', '← Language Server'),
         (1, False, 'package.json', ''),
     ]
-    return FileTreeSVG(
-        w=CW * 0.65, h=160, items=items,
-        title='Структура LSP-расширения: клиент и сервер'
-    )
+    title = 'LSP extension structure: client and server' if lang == 'en' else 'Структура LSP-расширения: клиент и сервер'
+    return FileTreeSVG(w=CW * 0.65, h=160, items=items, title=title)
 
 
-def agent_skills_tree():
+def agent_skills_tree(lang='ru'):
     """File tree for Agent Skills structure."""
-    items = [
-        (0, True,  '.github/', ''),
-        (1, True,  'my-skill/', ''),
-        (2, False, 'SKILL.md', '← описание и инструкции'),
-        (2, False, 'example.ts', '← примеры кода'),
-        (2, False, 'schema.json', '← опциональная схема'),
-    ]
-    return FileTreeSVG(
-        w=CW * 0.55, h=120, items=items,
-        title='Структура Agent Skill'
-    )
+    if lang == 'en':
+        items = [
+            (0, True,  '.github/', ''),
+            (1, True,  'my-skill/', ''),
+            (2, False, 'SKILL.md', '← description and instructions'),
+            (2, False, 'example.ts', '← code examples'),
+            (2, False, 'schema.json', '← optional input schema'),
+        ]
+    else:
+        items = [
+            (0, True,  '.github/', ''),
+            (1, True,  'my-skill/', ''),
+            (2, False, 'SKILL.md', '← описание и инструкции'),
+            (2, False, 'example.ts', '← примеры кода'),
+            (2, False, 'schema.json', '← опциональная схема'),
+        ]
+    title = 'Agent Skill structure' if lang == 'en' else 'Структура Agent Skill'
+    return FileTreeSVG(w=CW * 0.55, h=120, items=items, title=title)
 
 
 if __name__ == '__main__':

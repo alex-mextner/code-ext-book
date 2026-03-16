@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A VS Code Extension API book generated as PDF via Python + ReportLab. Russian edition (primary) and English translation (partial — chapters 1-9).
+A VS Code Extension API book generated as PDF via Python + ReportLab. Russian and English editions.
 
 ## Build Commands
 
 ```bash
-./scripts/build.sh          # Russian PDF → output.pdf
-./scripts/build-en.sh       # English PDF → output_en.pdf
+./scripts/build.sh          # Russian PDF → vscode-extensions-complete-guide-ru.pdf
+./scripts/build-en.sh       # English PDF → vscode-extensions-complete-guide-en.pdf
 ./scripts/build-all.sh      # Both PDFs
 ./scripts/screenshots.sh    # Take VS Code screenshots → screenshots/*.png
 ./scripts/install-fonts.sh  # Install DejaVu fonts (first time)
@@ -35,8 +35,7 @@ python3 reannotate.py       # Rerun code annotation after adding chapters
 
 **book_ui_diagrams.py** — visual components:
 - `FileTreeSVG(items, title)` — file tree diagrams with folder/file icons and L-connectors. Auto-calculates height. Items: `(depth, is_dir, name, comment)` tuples
-- `helloworld_tree()`, `lsp_tree()`, `agent_skills_tree()` — predefined trees
-- Mockup classes (TreeViewMockup, QuickPickMockup, etc.) — mostly replaced by real screenshots
+- `helloworld_tree(lang)`, `lsp_tree(lang)`, `agent_skills_tree(lang)` — predefined trees, `lang='ru'|'en'`
 
 **Screenshots** — real VS Code screenshots taken via Playwright (`take-screenshots.ts`). Launched with `--extensionDevelopmentPath` loading `sample-project/` which has a TreeDataProvider with MarkdownString tooltips. Referenced via `screenshot('filename.png', 'caption')`.
 
@@ -67,10 +66,11 @@ def build_story():
 ## Key conventions
 
 - Every `code([...])` block MUST have a `p('...')` description after it (with `sp(3)` between)
-- Cross-references to appendices use `<a href="#appendix_A">Справочник A</a>` (anchors from `StableAnchor`)
-- Glossary terms link to chapters via `<a href="#chapter_N">Глава N</a>`
+- Cross-references to appendices use `<a href="#appendix_A">` (RU: "Справочник A", EN: "Appendix A")
+- Glossary terms link to chapters via `<a href="#chapter_N">`
 - Tables with official VS Code data must include a URL to the source documentation
-- Code block comments in Russian (the book text language)
+- Both RU and EN versions must be kept in sync — edit both `book_*.py` and `book_*_en.py`
+- EN files use `tree_func('en')` for FileTreeSVG diagrams
 - `screenshot(filename, caption)` preserves aspect ratio, scales to fit `CW`
 - `box(title, body, kind)` — kind: 'note' (blue), 'tip' (green), 'warn' (orange)
 

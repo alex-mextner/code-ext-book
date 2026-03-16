@@ -6,7 +6,7 @@ A comprehensive book about building Visual Studio Code extensions. Covers the fu
 
 **~230 pages** | **19 chapters** | **50+ tips** | **4 reference appendices** | **51-term glossary**
 
-Available in Russian (complete) and English (chapters 1-9, rest in progress).
+Available in **Russian** and **English**.
 
 ## Quick Start
 
@@ -63,22 +63,32 @@ Includes: Command Palette, Explorer, Settings UI, Problems panel, Extensions vie
 ## Project Structure
 
 ```
-build_book.py          # Main build script (Russian PDF)
+build_book.py          # Russian PDF build
 build_book_en.py       # English PDF build
-book_helpers.py        # Styles, colors, helpers, syntax highlighting
-book_ui_diagrams.py    # FileTreeSVG diagrams, visual mockups
-front_matter.py        # Cover, dedication, TOC
-book_part1.py          # Chapters 1-9
-book_part2.py          # Chapters 10-18
-book_part3.py          # Practical examples, L10n
-book_ux.py             # UX guidelines
-book_perf.py           # Performance deep dive
-book_new.py            # Playwright E2E, monetization
-book_part4.py          # 50+ tips, glossary, checklists
-book_appendices.py     # Reference tables A-D
-afterword.py           # Afterword
+book_helpers.py        # Shared styles, colors, helpers, syntax highlighting
+book_ui_diagrams.py    # FileTreeSVG diagrams (lang='ru'|'en')
+front_matter.py        # Cover, dedication, TOC (Russian)
+front_matter_en.py     # Cover, dedication, TOC (English)
+book_part1.py          # Chapters 1-9 (Russian)
+book_part1_en.py       # Chapters 1-9 (English)
+book_part2.py          # Chapters 10-18 (Russian)
+book_part2_en.py       # Chapters 10-18 (English)
+book_part3.py          # Practical examples, L10n (Russian)
+book_part3_en.py       # Practical examples, L10n (English)
+book_part4.py          # 50+ tips, glossary (Russian)
+book_part4_en.py       # 50+ tips, glossary (English)
+book_ux.py             # UX guidelines (Russian)
+book_ux_en.py          # UX guidelines (English)
+book_perf.py           # Performance deep dive (Russian)
+book_perf_en.py        # Performance deep dive (English)
+book_new.py            # Playwright E2E, monetization (Russian)
+book_new_en.py         # Playwright E2E, monetization (English)
+book_appendices.py     # Reference tables A-D (Russian)
+book_appendices_en.py  # Reference tables A-D (English)
+afterword.py           # Afterword (Russian)
+afterword_en.py        # Afterword (English)
 take-screenshots.ts    # Playwright screenshot automation
-sample-project/        # VS Code extension used for screenshots
+sample-project/        # VS Code extension for screenshots
 scripts/               # Build and utility scripts
 screenshots/           # Generated VS Code screenshots
 ```
@@ -98,7 +108,7 @@ Code blocks have automatic TypeScript/JavaScript syntax highlighting. File tree 
 
 ## Contributing
 
-The book content is in Russian by default. English translation files have the `_en` suffix. To translate a chapter, copy the Russian file (e.g., `book_part2.py` → `book_part2_en.py`), translate all text in `p()`, `h2()`, `h3()`, `box()`, `banner()`, `bul()`, and table cells. Keep code blocks and API names as-is.
+Russian is the primary language. English translations have the `_en` suffix (e.g., `book_part2.py` → `book_part2_en.py`). When editing content, update both versions. Only translate text in `p()`, `h2()`, `h3()`, `box()`, `banner()`, `bul()`, table cells, and Russian comments in code blocks. Keep code identifiers and API names as-is.
 
 ## Author
 

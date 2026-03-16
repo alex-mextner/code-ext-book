@@ -121,7 +121,7 @@ def build_story():
     add(p('The generated project structure:'))
     add(sp(4))
     from book_ui_diagrams import helloworld_tree
-    add(helloworld_tree())
+    add(helloworld_tree('en'))
     add(sp(6))
 
     add(h2('Running the Extension'))
