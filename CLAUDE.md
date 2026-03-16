@@ -69,7 +69,7 @@ def build_story():
 - Cross-references to appendices use `<a href="#appendix_A">` (RU: "Справочник A", EN: "Appendix A")
 - Glossary terms link to chapters via `<a href="#chapter_N">`
 - Tables with official VS Code data must include a URL to the source documentation
-- Both RU and EN versions must be kept in sync — edit both `book_*.py` and `book_*_en.py`
+- **CRITICAL: RU and EN must always be in sync.** Every change to `book_*.py` must be mirrored in `book_*_en.py` (and vice versa). This includes: new sections, screenshots, quotes, boxes, cross-references, afterword. If you add content to RU, immediately add the translated version to EN.
 - EN files use `tree_func('en')` for FileTreeSVG diagrams
 - `screenshot(filename, caption)` preserves aspect ratio, scales to fit `CW`
 - `box(title, body, kind)` — kind: 'note' (blue), 'tip' (green), 'warn' (orange)

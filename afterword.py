@@ -40,6 +40,11 @@ def build_afterword():
     ]))
     add(sp(6))
 
+    add(screenshot('cockpit.jpg', ''))
+    add(sp(4))
+    add(p('Вы изучили приборную панель. Теперь — взлёт.'))
+    add(sp(8))
+
     add(h2('Следующие шаги'))
     for item in [
         'Изучить исходный код популярных расширений на GitHub',

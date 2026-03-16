@@ -40,6 +40,11 @@ def build_afterword():
     ]))
     add(sp(6))
 
+    add(screenshot('cockpit.jpg', ''))
+    add(sp(4))
+    add(p('You have studied the instrument panel. Now — takeoff.'))
+    add(sp(8))
+
     add(h2('Next Steps'))
     for item in [
         'Study the source code of popular extensions on GitHub',
@@ -51,13 +56,18 @@ def build_afterword():
         add(bul(item))
     add(sp(8))
 
+    add(box('Book Repository',
+        'The source code of this book is open: <b>github.com/alex-mextner/code-ext-book</b>. '
+        'Found an error, outdated information, or want to suggest an improvement? '
+        'Create an Issue or Pull Request — every contribution is valued.', 'tip'))
+    add(sp(8))
+
     add(hl(C['blue'], 1.5))
     add(sp(4))
     add(p(
-        '<i>This book is a translation and adaptation of the official '
-        'Visual Studio Code Extension API documentation (Microsoft, MIT License). '
-        'All code examples are taken from official Microsoft repositories and adapted. '
-        'Version March 2026.</i>',
+        '<i>Author: Alex (t.me/mxtnr) — CTO HyperIDE. '
+        'Based on official Visual Studio Code Extension API documentation (Microsoft). '
+        'License: CC BY-SA 4.0. Version March 2026.</i>',
         'bodyi'
     ))
     return A

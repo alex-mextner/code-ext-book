@@ -15,6 +15,14 @@ def build_story():
 
     # ── PREFACE ───────────────────────────────────────────────────────────────
     add(toc_ch('Preface'), h1('Preface'), hl(C['blue']), sp(8))
+    add(screenshot('sharpen-the-saw.jpg', ''))
+    add(sp(6))
+    add(quote(
+        'Sharpen the saw. Give me six hours to chop down a tree and I will spend the first four sharpening the axe.',
+        'Stephen Covey', '7 Habits of Highly Effective People, Habit 7'))
+    add(sp(6))
+    add(p('VS Code is your primary tool. Extensions are how you sharpen it for your specific needs. This book teaches you to build extensions that turn a code editor into the perfect instrument for your task.'))
+    add(sp(6))
     add(p('This guide is a comprehensive reference to the VS Code Extension API. It covers the entire extension developer journey: from creating your first Hello World command to publishing a language server or AI assistant on the Marketplace.'))
     add(sp(4))
     add(p('VS Code has become one of the most popular code editors largely thanks to its open extension platform. Over <b>60,000 extensions</b> are available on the Marketplace — and every single one is built using the same Extension API described here.'))
@@ -985,7 +993,7 @@ def build_story():
         ('LEFTPADDING', (1, 0), (1, 0), 12),
     ]))
     add(_tv_table)
-    add(Paragraph('Tree View: hierarchical data in the VS Code sidebar', S['caption']))
+    # caption removed — it floated away from the table
     add(pb())
 
     # ── CHAPTER 6.5: Decoration API ──────────────────────────────────────────

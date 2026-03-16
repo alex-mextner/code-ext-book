@@ -689,29 +689,17 @@ class Cover(Flowable):
             c.drawImage(cover_img, x_off, y_off, width=draw_w, height=draw_h)
         else:
             c.setFillColor(C['dark']); c.rect(0, 0, W, H, fill=1, stroke=0)
-        # Semi-transparent overlay at top for topic pills
-        for i in range(30):
-            alpha = (1 - i / 30.0) ** 2 * 0.55
+        # Semi-transparent overlay at top for topics
+        for i in range(25):
+            alpha = (1 - i / 25.0) ** 2 * 0.5
             c.setFillColorRGB(0.02, 0.02, 0.05, alpha)
-            c.rect(0, H - (i + 1) * (H * 0.18 / 30), W, H * 0.18 / 30, fill=1, stroke=0)
-        # Topic pills at top
-        topics = [
-            'Architecture', 'Commands & Menus', 'Tree View', 'Webview',
-            'LSP', 'Testing', 'AI & MCP', 'UX', 'Publishing', 'Performance',
-        ]
-        tx = 2.2 * cm
-        ty = H - 1.8 * cm
-        c.setFont('R', 7.5)
-        for topic in topics:
-            tw = c.stringWidth(topic, 'R', 7.5) + 12
-            c.setFillColorRGB(1, 1, 1, 0.08)
-            c.roundRect(tx, ty, tw, 14, 7, fill=1, stroke=0)
-            c.setFillColorRGB(0.7, 0.75, 0.8, 0.7)
-            c.drawString(tx + 6, ty + 3.5, topic)
-            tx += tw + 6
-            if tx > W - 3 * cm:
-                tx = 2.2 * cm
-                ty -= 20
+            c.rect(0, H - (i + 1) * (H * 0.12 / 25), W, H * 0.12 / 25, fill=1, stroke=0)
+        # Topics as centered text, ~80% width
+        topics = 'Architecture  ·  Commands & Menus  ·  Tree View  ·  Webview  ·  LSP'
+        topics2 = 'Testing  ·  AI & MCP  ·  UX  ·  Publishing  ·  Performance'
+        c.setFont('R', 8); c.setFillColorRGB(0.65, 0.7, 0.75, 0.75)
+        c.drawCentredString(W / 2, H - 1.6 * cm, topics)
+        c.drawCentredString(W / 2, H - 2.1 * cm, topics2)
         # Dark gradient overlay at bottom for text readability
         for i in range(60):
             alpha = (i / 60.0) ** 1.5 * 0.92
