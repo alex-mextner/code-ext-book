@@ -41,7 +41,7 @@ jobs:
             Auto-built from commit `${{ steps.meta.outputs.sha }}` on ${{ steps.meta.outputs.date }}.
 
             **Downloads:**
-            - `vscode-extensions-complete-guide-ru.pdf` — Russian (complete)
+            - `vscode-extensions-complete-guide-ru.pdf` — Russian
             - `vscode-extensions-complete-guide-en.pdf` — English
           artifacts: "vscode-extensions-complete-guide-*.pdf"
           allowUpdates: true
