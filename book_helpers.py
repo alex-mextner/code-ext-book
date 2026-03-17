@@ -717,9 +717,9 @@ class Cover(Flowable):
         c.line(2.2*cm, H * 0.175, 13*cm, H * 0.175)
         # Author
         c.setFont('R', 12); c.setFillColorRGB(0.75, 0.78, 0.83)
-        c.drawString(2.2*cm, H * 0.145, 'Alex')
+        c.drawString(2.2*cm, H * 0.145, 'Alex Mextner')
         c.setFont('R', 9); c.setFillColorRGB(0.5, 0.53, 0.58)
-        c.drawString(2.2*cm + c.stringWidth('Alex  ', 'R', 12), H * 0.147, 'CTO HyperIDE')
+        c.drawString(2.2*cm + c.stringWidth('Alex Mextner  ', 'R', 12), H * 0.147, 'CTO HyperIDE')
         # Year
         c.setFont('R', 10); c.setFillColorRGB(0.38, 0.4, 0.45)
         c.drawString(2.2*cm, H * 0.115, '2026')
