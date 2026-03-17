@@ -47,10 +47,10 @@ C = {
     'purple':  HexColor('#6F42C1'), 'white':  HexColor('#FFFFFF'),
     'lgray':   HexColor('#F8F9FA'), 'mgray':  HexColor('#9E9E9E'),
     'dgray':   HexColor('#424242'), 'border': HexColor('#DEE2E6'),
-    'codebg':  HexColor('#1E1E1E'), 'codefg': HexColor('#D4D4D4'),
-    'kw':      HexColor('#569CD6'), 'str_c':  HexColor('#CE9178'),
-    'num':     HexColor('#B5CEA8'), 'com':    HexColor('#6A9955'),
-    'func':    HexColor('#DCDCAA'), 'type_c': HexColor('#4EC9B0'),
+    'codebg':  HexColor('#F5F5F0'), 'codefg': HexColor('#383A42'),
+    'kw':      HexColor('#A626A4'), 'str_c':  HexColor('#50A14F'),
+    'num':     HexColor('#986801'), 'com':    HexColor('#A0A1A7'),
+    'func':    HexColor('#4078F2'), 'type_c': HexColor('#0184BC'),
     'text':    HexColor('#212529'),
     'tipbg':   HexColor('#E8F5E9'), 'tipbdr': HexColor('#2E7D32'),
     'warnbg':  HexColor('#FFF3E0'), 'warnbdr':HexColor('#E65100'),
@@ -353,7 +353,7 @@ def code(lines, lang='ts', highlight=True):
         ('BOTTOMPADDING', (0, 0), (-1, -1), 2),
         ('LEFTPADDING',   (0, 0), (-1, -1), 10),
         ('RIGHTPADDING',  (0, 0), (-1, -1), 10),
-        ('BOX', (0, 0), (-1, -1), 0.5, HexColor('#333')),
+        ('BOX', (0, 0), (-1, -1), 0.4, HexColor('#E0E0E0')),
     ]))
     return t
 
