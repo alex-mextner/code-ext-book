@@ -131,7 +131,7 @@ def build_front_matter():
 
     # Вертикальный отступ ~⅓ страницы
     add(sp(180))
-    add(Paragraph('Посвящаю своей любовнице Лене', ded_style))
+    add(Paragraph('Посвящаю своей невесте Лене', ded_style))
     add(sp(12))
     add(Paragraph('— с благодарностью за терпение и вдохновение', ded_line))
     add(pb())
