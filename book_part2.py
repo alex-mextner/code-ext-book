@@ -705,7 +705,7 @@ def build_story_part2():
     add(p('<b>Проверка перед публикацией:</b> '
           '<b>vsce ls</b> — список файлов в пакете (убедитесь что нет лишнего). '
           '<b>vsce package</b> — создаёт .vsix без публикации (тестируйте локально). '
-          'Апелляции: vsmarketplace@microsoft.com с publisher ID и extension ID.'))
+          'Апелляции: через службу поддержки Marketplace с publisher ID и extension ID.'))
     add(sp(3))
     add(box('Secret Scanning',
         'Marketplace автоматически сканирует каждое расширение на наличие секретов: '
