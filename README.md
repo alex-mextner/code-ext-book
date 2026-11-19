@@ -119,3 +119,7 @@ Russian is the primary language. English translations have the `_en` suffix (e.g
 ## License
 
 This work is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — free to share and adapt, even commercially, as long as you give credit and distribute derivatives under the same license.
+
+## Private-topology check
+
+CI runs `scripts/check-private-topology.sh` (plus gitleaks) on every pull request to keep private addresses, host names, MAC addresses and e-mails out of tracked files; use placeholders such as `<server-lan-ip>` or `<tailnet-host>` instead. To also catch your own machine names locally, list one regular expression per line in `~/.config/private-topology/denylist.txt` (never committed) and run the script before pushing.

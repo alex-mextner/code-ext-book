@@ -705,7 +705,7 @@ def build_story_part2():
     add(p('<b>Pre-publication checklist:</b> '
           '<b>vsce ls</b> — lists files in the package (make sure there\'s nothing extra). '
           '<b>vsce package</b> — creates a .vsix without publishing (test locally). '
-          'Appeals: vsmarketplace@microsoft.com with your publisher ID and extension ID.'))
+          'Appeals: through Marketplace support with your publisher ID and extension ID.'))
     add(sp(3))
     add(box('Secret Scanning',
         'The Marketplace automatically scans every extension for secrets: '
